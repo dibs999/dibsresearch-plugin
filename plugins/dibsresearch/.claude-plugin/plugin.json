@@ -1,0 +1,20 @@
+{
+  "name": "dibsresearch",
+  "displayName": "dibsresearch",
+  "version": "1.0.0",
+  "description": "Quarterly comparisons, segment development and an earnings-day brief from companies' own filings and earnings releases, through the dibsresearch connector. Every figure with its source link; only periods the companies reported; no prices and no investment advice.",
+  "author": {
+    "name": "dibsresearch",
+    "url": "https://dibsresearch.com"
+  },
+  "homepage": "https://dibsresearch.com/connectors",
+  "privacyPolicyUrl": "https://dibsresearch.com/privacy#connected-assistants",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "keywords": [
+    "finance",
+    "sec-filings",
+    "earnings",
+    "kpi",
+    "segments"
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "name": "dibsresearch",
+  "owner": {
+    "name": "dibsresearch",
+    "email": "help@dibsresearch.com"
+  },
+  "description": "Company KPIs, segments and financial statements from companies' own SEC filings and earnings releases, every figure with its source, through the dibsresearch connector.",
+  "plugins": [
+    {
+      "name": "dibsresearch",
+      "displayName": "dibsresearch",
+      "source": "./plugins/dibsresearch",
+      "description": "Quarterly comparisons, segment development and an earnings-day brief from companies' own filings, every figure with its source link.",
+      "version": "1.0.0",
+      "author": {
+        "name": "dibsresearch",
+        "email": "help@dibsresearch.com",
+        "url": "https://dibsresearch.com"
+      },
+      "homepage": "https://dibsresearch.com/connectors",
+      "repository": "https://github.com/dibs999/dibsresearch-plugin",
+      "license": "SEE LICENSE IN LICENSE.txt",
+      "keywords": ["finance", "sec-filings", "earnings", "kpi", "segments", "company-comparison"]
+    }
+  ]
+}
