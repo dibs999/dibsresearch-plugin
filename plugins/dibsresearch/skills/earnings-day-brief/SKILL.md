@@ -1,10 +1,10 @@
 ---
 name: earnings-day-brief
-description: Writes a short earnings-day brief from the dibsresearch connector - a company's newest reported quarter against the quarter before and the same quarter a year earlier (statement lines, the company's reported KPIs, the outlook in its own words), every figure with its source link and nothing from outside the filings. Use when the user asks what a company reported this quarter, for a results recap, an earnings summary or brief, or how the latest quarter compares with the previous one.
+description: Writes a short earnings-day brief from the dibsresearch connector - a company's newest reported quarter against the quarter before and the same quarter a year earlier (statement lines, the company's reported KPIs, the outlook in its own words), every figure a link to its place in dibsresearch and nothing from outside the filings. Use when the user asks what a company reported this quarter, for a results recap, an earnings summary or brief, or how the latest quarter compares with the previous one.
 license: Proprietary, for use with dibsresearch only (see LICENSE.txt)
 metadata:
   author: dibsresearch
-  version: "1.0.0"
+  version: "1.0.2"
 ---
 
 # Earnings-day brief
@@ -33,11 +33,11 @@ reported, compared with the quarter before and the same quarter a year earlier.
 ## Brief
 
 - **Header**: company, quarter (`fiscal_label`, period end), the filing or release with its date and link.
-- **Reported figures**: Line | This quarter | Prior quarter | Same quarter last year | Source, for revenue, gross
+- **Reported figures**: Line | This quarter | Prior quarter | Same quarter last year, each figure a link, for revenue, gross
   profit, operating income, net income and diluted EPS as reported. Lines the company did not report stay "not
   reported".
 - **Margins**: the ratios from step 4, labelled as trailing twelve months.
-- **KPIs**: KPI | This quarter | QoQ | YoY | Source, the changes from the tool's computed values only.
+- **KPIs**: KPI | This quarter | QoQ | YoY, each figure a link, the changes from the tool's computed values only.
 - **Outlook**: the quoted sentences, marked as the company's words.
 - **Not available**: what was asked or expected but not found.
 
@@ -56,8 +56,10 @@ the shares.
    leave the cell empty. Only when the user asks for a calculation by name, show it with formula and inputs and label
    it "calculated". Ratios come only where the server serves them: when a tool refuses `statement="ratios"` or a
    ratio, say that dibsresearch has no margins for this yet and show the reported lines without dividing them.
-4. A source with every figure: the `url` the tool returns (the document in dibsresearch); add `original_url` (the copy
-   at the SEC) when the user wants SEC links. One link per row, or per value when a row mixes documents.
+4. A link on every figure: the figure itself is a Markdown link to the `url` the tool returns (its place in
+   dibsresearch; a KPI value opens with its table cell marked), in the sentence or table cell where it stands, e.g.
+   `[$13.0 billion](url)`. No source list or Source column at the end; `original_url` (the copy at the SEC) only when
+   the user asks for SEC links.
 5. Keep values as returned. Scale only for display (millions, billions; percentages to one decimal, from `as_percent`
    where given) and state unit and currency once in the header. Mark a value with `provisional` as "(provisional)".
 6. Name periods as the tool does: `fiscal_label` where given, else the period end date; never make up a fiscal label.

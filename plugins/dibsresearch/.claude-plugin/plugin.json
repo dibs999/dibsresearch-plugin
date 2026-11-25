@@ -1,9 +1,9 @@
 {
   "name": "dibsresearch",
   "displayName": "dibsresearch",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "icon": "./icon.png",
-  "description": "Quarterly comparisons, segment development and an earnings-day brief from companies' own filings and earnings releases, through the dibsresearch connector. Every figure with its source link; only periods the companies reported; no prices and no investment advice.",
+  "description": "Quarterly comparisons, segment development and an earnings-day brief from companies' own filings and earnings releases, through the dibsresearch connector. Every figure a link to its place in dibsresearch; only periods the companies reported; no prices and no investment advice.",
   "author": {
     "name": "dibsresearch",
     "url": "https://dibsresearch.com"

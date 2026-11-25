@@ -11,7 +11,7 @@
       "displayName": "dibsresearch",
       "source": "./plugins/dibsresearch",
       "description": "Quarterly comparisons, segment development and an earnings-day brief from companies' own filings, every figure with its source link.",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "author": {
         "name": "dibsresearch",
         "email": "help@dibsresearch.com",

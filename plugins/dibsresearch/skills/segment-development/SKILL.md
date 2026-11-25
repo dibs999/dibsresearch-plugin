@@ -1,16 +1,16 @@
 ---
 name: segment-development
-description: Shows how a company's business segments developed with the dibsresearch connector - revenue per segment over recent quarters, segment operating income or margin where the company reports it, and the shift in the revenue mix - as tables with a source link for every value. Use when the user asks about a company's segments, divisions, business units or product lines, which part of the business grows, the revenue mix or mix shift, or segment margins, or wants one segment compared across companies.
+description: Shows how a company's business segments developed with the dibsresearch connector - revenue per segment over recent quarters, segment operating income or margin where the company reports it, and the shift in the revenue mix - as tables with every value linked to its place in dibsresearch. Use when the user asks about a company's segments, divisions, business units or product lines, which part of the business grows, the revenue mix or mix shift, or segment margins, or wants one segment compared across companies.
 license: Proprietary, for use with dibsresearch only (see LICENSE.txt)
 metadata:
   author: dibsresearch
-  version: "1.0.0"
+  version: "1.0.2"
 ---
 
 # Segment development
 
 Answers "how did the segments of X develop" from the dibsresearch connector: segment revenue, segment profit and the
-revenue mix over time, each value with its source.
+revenue mix over time, each value linked to its source.
 
 ## Steps
 
@@ -33,8 +33,8 @@ Read all segments with the same number of quarters, so the tables line up.
 
 ## Answer
 
-1. **Segment revenue**: one row per quarter (newest first, by period end), one column per segment, a
-   source link per row (or per value when the row mixes documents).
+1. **Segment revenue**: one row per quarter (newest first, by period end), one column per segment, each
+   value a link to its `url`.
 2. **Revenue mix**: the `share` values per quarter and segment, as percentages. One sentence per notable shift, naming
    only values from the table ("<segment> rose from <share> in <quarter> to <share> in <quarter>").
 3. **Segment profit**: operating income and margin per segment where reported; segments without a reported profit
@@ -59,8 +59,10 @@ differently.
    leave the cell empty. Only when the user asks for a calculation by name, show it with formula and inputs and label
    it "calculated". Ratios come only where the server serves them: when a tool refuses `statement="ratios"` or a
    ratio, say that dibsresearch has no margins for this yet and show the reported lines without dividing them.
-4. A source with every figure: the `url` the tool returns (the document in dibsresearch); add `original_url` (the copy
-   at the SEC) when the user wants SEC links. One link per row, or per value when a row mixes documents.
+4. A link on every figure: the figure itself is a Markdown link to the `url` the tool returns (its place in
+   dibsresearch; a KPI value opens with its table cell marked), in the sentence or table cell where it stands, e.g.
+   `[$13.0 billion](url)`. No source list or Source column at the end; `original_url` (the copy at the SEC) only when
+   the user asks for SEC links.
 5. Keep values as returned. Scale only for display (millions, billions; percentages to one decimal, from `as_percent`
    where given) and state unit and currency once in the header. Mark a value with `provisional` as "(provisional)".
 6. Name periods as the tool does: `fiscal_label` where given, else the period end date; never make up a fiscal label.

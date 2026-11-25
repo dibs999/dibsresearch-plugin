@@ -6,9 +6,10 @@ way every time: which tools to call, in which order, and how the answer looks.
 ## Skills
 
 - **quarterly-comparison**: one company's KPI or statement line over recent quarters, or several companies on one
-  figure (a statement line or a KPI; a ratio where the server serves it), as a table with the fiscal quarter and the source of every value.
-- **segment-development**: segment revenue and segment margins over time and the shift in the revenue mix, with
-  sources.
+  figure (a statement line or a KPI; a ratio where the server serves it), as a table with the fiscal quarter and
+  every value a link to its place in dibsresearch.
+- **segment-development**: segment revenue and segment margins over time and the shift in the revenue mix, every
+  figure a link to its place in dibsresearch.
 - **earnings-day-brief**: the newest reported quarter against the quarter before and the same quarter a year earlier,
   and the outlook in the company's own words.
 
@@ -24,7 +25,8 @@ ChatGPT, next to the dibsresearch connector.
 ## What the answers contain
 
 Only figures the dibsresearch tools return: KPI values read from the companies' filings and earnings releases, and
-statements as filed with the SEC. Every figure carries its link to the document. A quarter a company did not report on
+statements as filed with the SEC. Every figure is itself a link to its place in dibsresearch: a KPI value opens its
+table cell, marked, where the reader shows that same number, else the document. A quarter a company did not report on
 its own is shown as not reported, never computed. No share prices, no valuation, no estimates and no investment
 advice.
 

@@ -1,16 +1,16 @@
 ---
 name: quarterly-comparison
-description: Compares reported quarters with the dibsresearch connector - one company's KPI or statement line over recent quarters, or several companies (tickers, an index such as the S&P 500, or an industry) on one figure such as revenue, operating income or data center revenue - as a table with the fiscal quarter and a source link for every value. Use when the user asks how a company's revenue, margin, EPS, cash flow or an operating KPI developed quarter by quarter, or asks to compare or rank companies on such a figure for a quarter or over several quarters.
+description: Compares reported quarters with the dibsresearch connector - one company's KPI or statement line over recent quarters, or several companies (tickers, an index such as the S&P 500, or an industry) on one figure such as revenue, operating income or data center revenue - as a table with the fiscal quarter and every value linked to its place in dibsresearch. Use when the user asks how a company's revenue, margin, EPS, cash flow or an operating KPI developed quarter by quarter, or asks to compare or rank companies on such a figure for a quarter or over several quarters.
 license: Proprietary, for use with dibsresearch only (see LICENSE.txt)
 metadata:
   author: dibsresearch
-  version: "1.0.0"
+  version: "1.0.2"
 ---
 
 # Quarterly comparison
 
 Answers "how did X develop over the last quarters" and "how do these companies compare on X" from the dibsresearch
-connector, with one table and a source for every value.
+connector, with one table and a link on every value.
 
 ## Pick the path
 
@@ -30,7 +30,7 @@ company.
    take the one the user's words match best.
 2. `get_kpi_series(symbol, kpi=<key>, quarters=8, include_derived=true, derived_kinds=["yoy", "qoq"])`. Use the number
    of quarters the user asked for (1 to 12).
-3. Table, newest quarter first: Quarter (period end) | Value | YoY | QoQ | Source.
+3. Table, newest quarter first: Quarter (period end) | Value | YoY | QoQ, each value a link to its `url`.
 4. When `newer_results` is present, add one line under the table: the company has published results for a later
    quarter (form, date, link) that dibsresearch has not read yet.
 
@@ -38,7 +38,8 @@ company.
 
 1. `get_financial_statements(symbol, statement="income", period="quarterly", periods=8)`. Use `"cashflow"` or
    `"balance"` for those lines; up to 10 periods.
-2. Table, newest quarter first, one column per line the user asked for, a Source column with each period's filing.
+2. Table, newest quarter first, one column per line the user asked for, each value a link to its period's filing
+   (`source.url`).
 3. Periods marked `not_reported` keep their row with "not reported" and the tool's note. Free cash flow, EBITDA, EBIT
    and total debt are not offered as statement lines: say so and offer the printed lines (operating cash flow, capital
    expenditure) instead.
@@ -58,7 +59,7 @@ company.
    - A KPI takes up to 25 companies per call; a statement line or ratio takes a whole index.
 2. When the answer has `next_offset` and the user wants all companies, call again with `offset=<next_offset>` until it
    is absent. Never present a page as the whole set.
-3. Table sorted as returned: Company | Quarter (`fiscal_label`, period end) | Value | Source. With `periods` above 1,
+3. Table sorted as returned: Company | Quarter (`fiscal_label`, period end) | Value (a link to its `url`). With `periods` above 1,
    one column per period. Rows with `missing` go below the ranked rows with their reason; rows marked `not_ranked`
    (another currency or unit) are listed apart and not ranked.
 4. Under the table: how many companies of the set have a value; the index list's date and that it is not the official
@@ -79,8 +80,10 @@ company.
    leave the cell empty. Only when the user asks for a calculation by name, show it with formula and inputs and label
    it "calculated". Ratios come only where the server serves them: when a tool refuses `statement="ratios"` or a
    ratio, say that dibsresearch has no margins for this yet and show the reported lines without dividing them.
-4. A source with every figure: the `url` the tool returns (the document in dibsresearch); add `original_url` (the copy
-   at the SEC) when the user wants SEC links. One link per row, or per value when a row mixes documents.
+4. A link on every figure: the figure itself is a Markdown link to the `url` the tool returns (its place in
+   dibsresearch; a KPI value opens with its table cell marked), in the sentence or table cell where it stands, e.g.
+   `[$13.0 billion](url)`. No source list or Source column at the end; `original_url` (the copy at the SEC) only when
+   the user asks for SEC links.
 5. Keep values as returned. Scale only for display (millions, billions; percentages to one decimal, from `as_percent`
    where given) and state unit and currency once in the header. Mark a value with `provisional` as "(provisional)".
 6. Name periods as the tool does: `fiscal_label` where given, else the period end date; never make up a fiscal label.
@@ -94,5 +97,5 @@ company.
 
 "Revenue of NVDA, AMD and AVGO over the last four quarters" →
 `compare_companies(metric="revenue", symbols=["NVDA", "AMD", "AVGO"], periods=4)` → one row per company, one
-column per quarter (each the quarter as reported; a quarter not reported alone stays empty with its reason), a
-source link per value, and a note that the three fiscal quarters end on different dates.
+column per quarter (each the quarter as reported; a quarter not reported alone stays empty with its reason),
+each value a link to its place in dibsresearch, and a note that the three fiscal quarters end on different dates.
